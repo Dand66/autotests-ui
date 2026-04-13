@@ -9,11 +9,11 @@ def chromium_page(playwright: Playwright) -> Page:
 
 
 @pytest.fixture(scope="session")
-def initialize_browser_state():
-    with sync_playwright() as playwright:
+def initialize_browser_state(playwright: Playwright):
         browser = playwright.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
+
         page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
 
         # Заполнение формы регистрации
